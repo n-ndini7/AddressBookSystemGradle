@@ -98,4 +98,9 @@ public class ContactInfo {
 				+ " \n Mobile no: " + phoneno + " \n Email id : " + email);
 		System.out.println();
 	}
+
+	public String toString() {
+		return fname + " " + lname + " : " + address + " : " + city + " : " + state + " : " + zip + " : " + phoneno
+				+ " : " + email + "\n";
+	}
 }
