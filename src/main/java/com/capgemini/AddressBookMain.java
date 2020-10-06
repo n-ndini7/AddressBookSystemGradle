@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.regex.*;
 
 public class AddressBookMain {
-	// UC3 - edit contact
+	// UC2 - add new contact in address book
 	public static ContactInfo contact;
 	private static Scanner sc;
 	ArrayList<ContactInfo> Addbook;
@@ -167,6 +167,19 @@ public class AddressBookMain {
 				break;
 			}
 
+		}
+	}
+
+	public void removeContact(String name) {
+		for (ContactInfo c : Addbook) {
+			if (c.getFname().equals(name)) {
+				Addbook.remove(c);
+				System.out.println("Contact removed successfully!!");
+				break;
+			}
+		}
+		for (ContactInfo p : Addbook) {
+			p.show();
 		}
 	}
 
@@ -398,6 +411,11 @@ public class AddressBookMain {
 				System.out.println("Enter the first name of the contact to be edited :");
 				String name = sc.nextLine();
 				ab.editContact(name);
+				break;
+			case 3:
+				System.out.println("Enter the first name of the contact to be deleted :");
+				String nm = sc.nextLine();
+				ab.removeContact(nm);
 				break;
 			default:
 				System.out.println("Wrong choice entered! Please re-try:");
