@@ -6,7 +6,7 @@ import java.util.regex.*;
 import java.util.stream.Collectors;
 
 public class AddressBookMain extends ContactInfo {
-	// UC9- view persons by city or state
+	// UC9- count by city or state
 	private static Scanner sc;
 	// public static ArrayList<ContactInfo> Addbook = new ArrayList<ContactInfo>();
 	public static HashMap<String, ArrayList<AddressBookMain>> Directory = new HashMap<String, ArrayList<AddressBookMain>>();
@@ -302,9 +302,12 @@ public class AddressBookMain extends ContactInfo {
 			}
 			for (Map.Entry<String, ArrayList<AddressBookMain>> e : cityContacts.entrySet()) {
 				System.out.println("The contacts in city " + e.getKey() + " are:");
+				int count1 = 0;
 				for (ContactInfo add : e.getValue()) {
 					System.out.println(add);
+					count1++;
 				}
+				System.out.println(count1 + " are in " + e.getKey() + " city");
 			}
 			HashMap<String, ArrayList<AddressBookMain>> stateContacts = new HashMap<>();
 			for (Map.Entry<String, ArrayList<AddressBookMain>> entry : Directory.entrySet()) {
@@ -322,9 +325,12 @@ public class AddressBookMain extends ContactInfo {
 			}
 			for (Map.Entry<String, ArrayList<AddressBookMain>> e : stateContacts.entrySet()) {
 				System.out.println("The contacts in state " + e.getKey() + " are:");
+				int count2 = 0;
 				for (AddressBookMain add : e.getValue()) {
 					System.out.println(add);
+					count2++;
 				}
+				System.out.println(count2 + " are in state" + e.getKey());
 			}
 		}
 
