@@ -3,12 +3,12 @@ package com.capgemini;
 import java.util.*;
 import java.util.regex.*;
 
+//Uc9 - view contacts by city or state using streams
 public class AddressBookMain {
 	Scanner sc = new Scanner(System.in);
 	public static List<ContactInfo> addbook = new LinkedList<ContactInfo>();
 	public static HashMap<String, List<ContactInfo>> Directory = new HashMap<String, List<ContactInfo>>();
 
-	// uc8 - search person in a city or state
 	public void addContact(ContactInfo contactObj) {
 		ContactInfo contact;
 		boolean isPresent = addbook.stream().anyMatch(obj -> obj.equals(contactObj));
@@ -35,6 +35,16 @@ public class AddressBookMain {
 				list.stream()
 						.filter(obj -> ((obj.getState().equals(cityOrState)) && (obj.getFname().equals(searchPerson))))
 						.forEach(System.out::println);
+		}
+	}
+
+	private void viewPersonsByCityState(String cityOrState, int searchChoice) {
+		for (Map.Entry<String, List<ContactInfo>> entry : Directory.entrySet()) {
+			List<ContactInfo> list = entry.getValue();
+			if (searchChoice == 8)
+				list.stream().filter(obj -> obj.getCity().equals(cityOrState)).forEach(System.out::println);
+			else if (searchChoice == 9)
+				list.stream().filter(obj -> obj.getState().equals(cityOrState)).forEach(System.out::println);
 		}
 	}
 
@@ -260,19 +270,26 @@ public class AddressBookMain {
 				}
 				ab.addAddressBook(addname, addbook);
 			}
-
-			System.out.println("Do you want to perform search operation? (Y/N)");
+			/*
+			 * System.out.println("Do you want to perform search operation? (Y/N)"); String
+			 * choice = sc.nextLine(); if (choice.equalsIgnoreCase("y")) {
+			 * System.out.println("Enter first name of person to search"); String
+			 * searchPerson = sc.nextLine();
+			 * System.out.println("Enter the name of city or state you want to search in:");
+			 * String cityOrState = sc.nextLine(); System.out.
+			 * println("Enter 8 if you entered name of a city \nEnter 9 if you entered name of a state"
+			 * ); int searchChoice = Integer.parseInt(sc.nextLine());
+			 * ab.searchPersonAcrossCityState(searchPerson, searchChoice, cityOrState); }
+			 */
+			System.out.println("Do you want to view contacts by state or city? (Y/N)");
 			String choice = sc.nextLine();
 			if (choice.equalsIgnoreCase("y")) {
-				System.out.println("Enter first name of person to search");
-				String searchPerson = sc.nextLine();
-				System.out.println("Enter the name of city or state you want to search in:");
+				System.out.println("Enter the name of city or state");
 				String cityOrState = sc.nextLine();
 				System.out.println("Enter 8 if you entered name of a city \nEnter 9 if you entered name of a state");
 				int searchChoice = Integer.parseInt(sc.nextLine());
-				ab.searchPersonAcrossCityState(searchPerson, searchChoice, cityOrState);
+				ab.viewPersonsByCityState(cityOrState, searchChoice);
 			}
-
 			System.out.println("Thankyou for visiting!!");
 			System.exit(0);
 
