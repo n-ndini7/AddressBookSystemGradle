@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.regex.*;
 
 public class AddressBookMain {
-	// UC1 - create a contact in address book
+	// UC2 - add new contact in address book
 	public static ContactInfo contact;
 	private static Scanner sc;
 	ArrayList<ContactInfo> Addbook;
@@ -17,6 +17,12 @@ public class AddressBookMain {
 	public void addContact() {
 		Addbook.add(contact);
 		System.out.println("Contact Added successfully!!");
+	}
+
+	public void showContact() {
+		for (ContactInfo c : Addbook) {
+			c.show();
+		}
 	}
 
 	public boolean FirstNameCheck(String firstName) throws ContactRegistrationException {
@@ -224,10 +230,20 @@ public class AddressBookMain {
 				contact.setEmail(email);
 				contact.setPhoneno(phone);
 				ab.addContact();
-				break;
+				// System.out.println("Contact added successfully!!");
+				System.out.println("Do you want to add more ?(Y/N)");
+				choice = sc.nextLine();
 			} else {
-				System.out.println("Thankyou for visiting!");
-				System.exit(0);
+				System.out.println("Do you want to display contacts added to address book?(Y/N)");
+				String show = sc.nextLine();
+				if (show.equalsIgnoreCase("y")) {
+					ab.showContact();
+					break;
+				} else {
+					System.out.println("Thanks for visiting!");
+					System.exit(0);
+					
+				}
 			}
 		}
 	}
