@@ -2,8 +2,9 @@ package com.capgemini;
 
 import java.util.*;
 import java.util.regex.*;
+import java.util.Collections;
 
-//UC10 - count no of contacts in a state or city
+//UC11 - sort contacts aplhabetically according to first name in an Address Book using java streams
 public class AddressBookMain {
 	Scanner sc = new Scanner(System.in);
 	public static List<ContactInfo> addbook = new LinkedList<ContactInfo>();
@@ -46,6 +47,11 @@ public class AddressBookMain {
 			else if (searchChoice == 9)
 				list.stream().filter(obj -> obj.getState().equals(cityOrState)).forEach(System.out::println);
 		}
+	}
+
+	private List<ContactInfo> sortAddressBookByName(List<ContactInfo> sortList) {
+		Collections.sort(sortList, new ContactInfo());
+		return sortList;
 	}
 
 	private long getCountByCityState(String cityOrState, int searchChoice) {
@@ -302,15 +308,22 @@ public class AddressBookMain {
 			 * ); int searchChoice = Integer.parseInt(sc.nextLine());
 			 * ab.viewPersonsByCityState(cityOrState, searchChoice); }
 			 */
-			System.out.println("Do you want to count contacts by state or city? (Y/N)");
+			/*
+			 * System.out.println("Do you want to count contacts by state or city? (Y/N)");
+			 * String choice = sc.nextLine(); if (choice.equalsIgnoreCase("y")) {
+			 * System.out.println("Enter the name of city or state: "); String cityOrState =
+			 * sc.nextLine(); System.out.
+			 * println("Enter 8 if you entered name of a city \nEnter 9 if you entered name of a state"
+			 * ); int searchChoice = Integer.parseInt(sc.nextLine()); System.out.println(
+			 * "Total persons in " + cityOrState + " = " +
+			 * ab.getCountByCityState(cityOrState, searchChoice)); }
+			 */
+			System.out.println("Do you want to sort contacts in Address Book? (Y/N)");
 			String choice = sc.nextLine();
 			if (choice.equalsIgnoreCase("y")) {
-				System.out.println("Enter the name of city or state: ");
-				String cityOrState = sc.nextLine();
-				System.out.println("Enter 8 if you entered name of a city \nEnter 9 if you entered name of a state");
-				int searchChoice = Integer.parseInt(sc.nextLine());
-				System.out.println(
-						"Total persons in " + cityOrState + " = " + ab.getCountByCityState(cityOrState, searchChoice));
+				List<ContactInfo> sortedEntriesList = ab.sortAddressBookByName(ab.addbook);
+				System.out.println("Entries sorted in current address book!! Sorted Address Book Entries are:");
+				System.out.println(sortedEntriesList);
 			}
 			System.out.println("Thankyou for visiting!!");
 			System.exit(0);
