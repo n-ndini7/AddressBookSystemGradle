@@ -103,4 +103,12 @@ public class ContactInfo {
 		return fname + " " + lname + " : " + address + " : " + city + " : " + state + " : " + zip + " : " + phoneno
 				+ " : " + email + "\n";
 	}
+	public boolean equals(Object o) {
+		ContactInfo contact = (ContactInfo) o;
+		if ((this.fname).equals(contact.fname))
+			return true;
+		else
+			return false;
+	}
+
 }
