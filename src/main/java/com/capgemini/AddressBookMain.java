@@ -272,139 +272,144 @@ public class AddressBookMain {
 			switch (ch) {
 
 			case 1:
-				while (p) {
-					System.out.println("Do you want to create a contact in Address book? (Y/N)");
-					choice = sc.nextLine();
-					if (choice.equalsIgnoreCase("y")) {
-						while (true) {
-							try {
-								System.out.print("Enter first name: ");
-								fname = sc.nextLine();
-								if (ab.FirstNameCheck(fname)) {
-									break;
-								}
-							} catch (ContactRegistrationException e) {
-								System.out.println("contactregistrationexception thrown!!");
-								System.out.println(e.getMessage());
-								System.out.println();
-							}
-						}
-						while (p) {
-							try {
-								System.out.print("Enter last name: ");
-								lname = sc.nextLine();
-								if (ab.LastNameCheck(lname)) {
-									break;
-								}
-							} catch (ContactRegistrationException e) {
-								System.out.println("contactregistrationexception thrown!!");
-								System.out.println(e.getMessage());
-								System.out.println();
-							}
-						}
-						while (p) {
-							try {
-								System.out.print("Enter Address: ");
-								add = sc.nextLine();
-								if (ab.AddressCheck(add)) {
-									break;
-								}
-							} catch (ContactRegistrationException e) {
-								System.out.println("contactregistrationexception thrown!!");
-								System.out.println(e.getMessage());
-								System.out.println();
-							}
-						}
-						while (p) {
-							try {
-								System.out.print("Enter State: ");
-								state = sc.nextLine();
-								if (ab.StateCheck(state)) {
-									break;
-								}
-							} catch (ContactRegistrationException e) {
-								System.out.println("contactregistrationexception thrown!!");
-								System.out.println(e.getMessage());
-								System.out.println();
-							}
-						}
-						while (p) {
-							try {
-								System.out.print("Enter city: ");
-								city = sc.nextLine();
-								if (ab.CityCheck(city)) {
-									break;
-								}
-							} catch (ContactRegistrationException e) {
-								System.out.println("contactregistrationexception thrown!!");
-								System.out.println(e.getMessage());
-								System.out.println();
-							}
-						}
-						while (true) {
-							try {
-								System.out.print("Enter ZIP: ");
-								zip = sc.nextLine();
-								if (ab.ZIPCheck(zip)) {
-									break;
-								}
-							} catch (ContactRegistrationException e) {
-								System.out.println("contactregistrationexception thrown!!");
-								System.out.println(e.getMessage());
-								System.out.println();
-							}
-						}
-						while (true) {
-							try {
-								System.out.print("Enter Mobile no.: ");
-								phone = sc.nextLine();
-								if (ab.MobileCheck(phone)) {
-									break;
-								}
-							} catch (ContactRegistrationException e) {
-								System.out.println("contactregistrationexception thrown!!");
-								System.out.println(e.getMessage());
-								System.out.println();
-							}
-						}
-						while (true) {
-							try {
-								System.out.print("Enter Email: ");
-								email = sc.nextLine();
-								if (ab.EmailCheck(email)) {
-									break;
-								}
-							} catch (ContactRegistrationException e) {
-								System.out.println("contactregistrationexception thrown!!");
-								System.out.println(e.getMessage());
-								System.out.println();
-							}
-						}
-						contact = new ContactInfo();
-						contact.setFname(fname);
-						contact.setLname(lname);
-						contact.setAddress(add);
-						contact.setCity(city);
-						contact.setState(state);
-						contact.setZip(zip);
-						contact.setEmail(email);
-						contact.setPhoneno(phone);
-						ab.addContact();
-						// System.out.println("Contact added successfully!!");
-						System.out.println("Do you want to add more ?(Y/N)");
+				System.out.println("Enter the number of contacts you want to enter into Address book:");
+				int n = Integer.parseInt(sc.nextLine());
+				while (n > 0) {
+					while (p) {
+						System.out.println("Do you want to create a contact in Address book? (Y/N)");
 						choice = sc.nextLine();
-					} else {
-						System.out.println("Do you want to display contacts added to address book?(Y/N)");
-						String show = sc.nextLine();
-						if (show.equalsIgnoreCase("y")) {
-							ab.showContact();
-							break;
+						if (choice.equalsIgnoreCase("y")) {
+							while (true) {
+								try {
+									System.out.print("Enter first name: ");
+									fname = sc.nextLine();
+									if (ab.FirstNameCheck(fname)) {
+										break;
+									}
+								} catch (ContactRegistrationException e) {
+									System.out.println("contactregistrationexception thrown!!");
+									System.out.println(e.getMessage());
+									System.out.println();
+								}
+							}
+							while (p) {
+								try {
+									System.out.print("Enter last name: ");
+									lname = sc.nextLine();
+									if (ab.LastNameCheck(lname)) {
+										break;
+									}
+								} catch (ContactRegistrationException e) {
+									System.out.println("contactregistrationexception thrown!!");
+									System.out.println(e.getMessage());
+									System.out.println();
+								}
+							}
+							while (p) {
+								try {
+									System.out.print("Enter Address: ");
+									add = sc.nextLine();
+									if (ab.AddressCheck(add)) {
+										break;
+									}
+								} catch (ContactRegistrationException e) {
+									System.out.println("contactregistrationexception thrown!!");
+									System.out.println(e.getMessage());
+									System.out.println();
+								}
+							}
+							while (p) {
+								try {
+									System.out.print("Enter State: ");
+									state = sc.nextLine();
+									if (ab.StateCheck(state)) {
+										break;
+									}
+								} catch (ContactRegistrationException e) {
+									System.out.println("contactregistrationexception thrown!!");
+									System.out.println(e.getMessage());
+									System.out.println();
+								}
+							}
+							while (p) {
+								try {
+									System.out.print("Enter city: ");
+									city = sc.nextLine();
+									if (ab.CityCheck(city)) {
+										break;
+									}
+								} catch (ContactRegistrationException e) {
+									System.out.println("contactregistrationexception thrown!!");
+									System.out.println(e.getMessage());
+									System.out.println();
+								}
+							}
+							while (true) {
+								try {
+									System.out.print("Enter ZIP: ");
+									zip = sc.nextLine();
+									if (ab.ZIPCheck(zip)) {
+										break;
+									}
+								} catch (ContactRegistrationException e) {
+									System.out.println("contactregistrationexception thrown!!");
+									System.out.println(e.getMessage());
+									System.out.println();
+								}
+							}
+							while (true) {
+								try {
+									System.out.print("Enter Mobile no.: ");
+									phone = sc.nextLine();
+									if (ab.MobileCheck(phone)) {
+										break;
+									}
+								} catch (ContactRegistrationException e) {
+									System.out.println("contactregistrationexception thrown!!");
+									System.out.println(e.getMessage());
+									System.out.println();
+								}
+							}
+							while (true) {
+								try {
+									System.out.print("Enter Email: ");
+									email = sc.nextLine();
+									if (ab.EmailCheck(email)) {
+										break;
+									}
+								} catch (ContactRegistrationException e) {
+									System.out.println("contactregistrationexception thrown!!");
+									System.out.println(e.getMessage());
+									System.out.println();
+								}
+							}
+							contact = new ContactInfo();
+							contact.setFname(fname);
+							contact.setLname(lname);
+							contact.setAddress(add);
+							contact.setCity(city);
+							contact.setState(state);
+							contact.setZip(zip);
+							contact.setEmail(email);
+							contact.setPhoneno(phone);
+							ab.addContact();
+							// System.out.println("Contact added successfully!!");
+							System.out.println("Do you want to add more ?(Y/N)");
+							choice = sc.nextLine();
 						} else {
-							// System.out.println("Thanks for visiting!");
-							break;
+							System.out.println("Do you want to display contacts added to address book?(Y/N)");
+							String show = sc.nextLine();
+							if (show.equalsIgnoreCase("y")) {
+								ab.showContact();
+								break;
+							} else {
+								// System.out.println("Thanks for visiting!");
+								break;
 
+							}
 						}
 					}
+					n--;
 				}
 				break;
 			case 2:
