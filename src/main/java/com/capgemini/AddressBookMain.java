@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.regex.*;
 import java.util.stream.Collectors;
 
-//UC11 - sort contacts aplhabetically according to first name in an Address Book using java streams
+//UC12 - sort contacts in an Address Book accordign to user choice using java streams
 public class AddressBookMain {
 	Scanner sc = new Scanner(System.in);
 	public static List<ContactInfo> addbook = new LinkedList<ContactInfo>();
@@ -47,10 +47,6 @@ public class AddressBookMain {
 			else if (searchChoice == 9)
 				list.stream().filter(obj -> obj.getState().equals(cityOrState)).forEach(System.out::println);
 		}
-	}
-
-	private List<ContactInfo> sortAddressBookByName() {
-		return addbook.stream().sorted((a, b) -> a.getCity().compareTo(b.getCity())).collect(Collectors.toList());
 	}
 
 	private long getCountByCityState(String cityOrState, int searchChoice) {
@@ -320,14 +316,41 @@ public class AddressBookMain {
 			System.out.println("Do you want to sort contacts in Address Book? (Y/N)");
 			String choice = sc.nextLine();
 			if (choice.equalsIgnoreCase("y")) {
-				List<ContactInfo> sortedEntriesList = addbook.stream()
-						.sorted((a, b) -> a.getFname().compareTo(b.getFname())).collect(Collectors.toList());
-				System.out.println("Entries sorted in current address book!! Sorted Address Book Entries are:");
-				System.out.println(sortedEntriesList);
-			}
-			System.out.println("Thankyou for visiting!!");
-			System.exit(0);
+				System.out.println(
+						"1.Enter 1 to sort according to state \n2.Enter 2 to sort according to city \n3.Enter 3 to sort according to zip ");
+				int ch = Integer.parseInt(sc.nextLine());
+				List<ContactInfo> sortedEntriesList;
+				switch (ch) {
 
+				case 1:
+					sortedEntriesList = addbook.stream().sorted((a, b) -> a.getState().compareTo(b.getState()))
+							.collect(Collectors.toList());
+					System.out.println(
+							"Entries sorted according to State in current address book!! Sorted Address Book Entries are:");
+					System.out.println(sortedEntriesList);
+					break;
+				case 2:
+					sortedEntriesList = addbook.stream().sorted((a, b) -> a.getCity().compareTo(b.getCity()))
+							.collect(Collectors.toList());
+					System.out.println(
+							"Entries sorted according to City in current address book!! Sorted Address Book Entries are:");
+					System.out.println(sortedEntriesList);
+					break;
+				case 3:
+					sortedEntriesList = addbook.stream().sorted((a, b) -> a.getZip().compareTo(b.getZip()))
+							.collect(Collectors.toList());
+					System.out.println(
+							"Entries sorted according to ZIP Code in current address book!! Sorted Address Book Entries are:");
+					System.out.println(sortedEntriesList);
+					break;
+				default:
+					System.out.println("Wrong choice entered!!");
+					break;
+				}
+				System.out.println("Thankyou for visiting!!");
+				System.exit(0);
+
+			}
 		}
 	}
 }
