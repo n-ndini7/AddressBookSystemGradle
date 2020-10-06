@@ -1,6 +1,8 @@
 package com.capgemini;
 
-public class ContactInfo {
+import java.util.Comparator;
+
+public class ContactInfo implements Comparator<ContactInfo> {
 
 	// This class maintains contact information
 	String fname;
@@ -103,6 +105,7 @@ public class ContactInfo {
 		return fname + " " + lname + " : " + address + " : " + city + " : " + state + " : " + zip + " : " + phoneno
 				+ " : " + email + "\n";
 	}
+
 	public boolean equals(Object o) {
 		ContactInfo contact = (ContactInfo) o;
 		if ((this.fname).equals(contact.fname))
@@ -111,4 +114,8 @@ public class ContactInfo {
 			return false;
 	}
 
+	@Override
+	public int compare(ContactInfo o1, ContactInfo o2) {
+		return (o1.getFname() + o1.getLname()).compareTo(o2.getFname() + o2.getLname());
+	}
 }
