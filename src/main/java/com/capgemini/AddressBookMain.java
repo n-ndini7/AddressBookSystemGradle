@@ -3,7 +3,7 @@ package com.capgemini;
 import java.util.*;
 import java.util.regex.*;
 
-//Uc9 - view contacts by city or state using streams
+//UC10 - count no of contacts in a state or city
 public class AddressBookMain {
 	Scanner sc = new Scanner(System.in);
 	public static List<ContactInfo> addbook = new LinkedList<ContactInfo>();
@@ -46,6 +46,18 @@ public class AddressBookMain {
 			else if (searchChoice == 9)
 				list.stream().filter(obj -> obj.getState().equals(cityOrState)).forEach(System.out::println);
 		}
+	}
+
+	private long getCountByCityState(String cityOrState, int searchChoice) {
+		long count = 0;
+		for (Map.Entry<String, List<ContactInfo>> entry : Directory.entrySet()) {
+			List<ContactInfo> list = entry.getValue();
+			if (searchChoice == 8)
+				count += list.stream().filter(obj -> obj.getCity().equals(cityOrState)).count();
+			else if (searchChoice == 9)
+				count += list.stream().filter(obj -> obj.getState().equals(cityOrState)).count();
+		}
+		return count;
 	}
 
 	public static boolean FirstNameCheck(String firstName) throws ContactRegistrationException {
@@ -281,14 +293,24 @@ public class AddressBookMain {
 			 * ); int searchChoice = Integer.parseInt(sc.nextLine());
 			 * ab.searchPersonAcrossCityState(searchPerson, searchChoice, cityOrState); }
 			 */
-			System.out.println("Do you want to view contacts by state or city? (Y/N)");
+			/*
+			 * System.out.println("Do you want to view contacts by state or city? (Y/N)");
+			 * String choice = sc.nextLine(); if (choice.equalsIgnoreCase("y")) {
+			 * System.out.println("Enter the name of city or state"); String cityOrState =
+			 * sc.nextLine(); System.out.
+			 * println("Enter 8 if you entered name of a city \nEnter 9 if you entered name of a state"
+			 * ); int searchChoice = Integer.parseInt(sc.nextLine());
+			 * ab.viewPersonsByCityState(cityOrState, searchChoice); }
+			 */
+			System.out.println("Do you want to count contacts by state or city? (Y/N)");
 			String choice = sc.nextLine();
 			if (choice.equalsIgnoreCase("y")) {
-				System.out.println("Enter the name of city or state");
+				System.out.println("Enter the name of city or state: ");
 				String cityOrState = sc.nextLine();
 				System.out.println("Enter 8 if you entered name of a city \nEnter 9 if you entered name of a state");
 				int searchChoice = Integer.parseInt(sc.nextLine());
-				ab.viewPersonsByCityState(cityOrState, searchChoice);
+				System.out.println(
+						"Total persons in " + cityOrState + " = " + ab.getCountByCityState(cityOrState, searchChoice));
 			}
 			System.out.println("Thankyou for visiting!!");
 			System.exit(0);
