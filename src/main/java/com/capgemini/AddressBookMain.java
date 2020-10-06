@@ -258,12 +258,12 @@ public class AddressBookMain extends ContactInfo {
 					}
 
 					AddressBookMain ab = new AddressBookMain(fname, lname, email, add, city, state, zip, phone);
-					if (ab.duplicacyCheck(fname)) {
-						addbook.add(ab);
-					} else {
-						System.out.println("Contact already present. Duplication not allowed!!");
-						System.out.println("Entry rejected of this contact! ");
-					}
+					/*
+					 * if (ab.duplicacyCheck(fname)) { addbook.add(ab); } else {
+					 * System.out.println("Contact already present. Duplication not allowed!!");
+					 * System.out.println("Entry rejected of this contact! "); }
+					 */
+					addbook.add(ab);
 					no--;
 				}
 				Directory.put(addname, addbook);
@@ -274,8 +274,37 @@ public class AddressBookMain extends ContactInfo {
 			 * List<ContactInfo> a = (List<ContactInfo>) mapElement.getValue();
 			 * ab.showContact(); }
 			 */
+			System.out.println("Do you want to perform search?(Y/N)");
+			String ino = sc.nextLine();
+			if (ino.equalsIgnoreCase("y")) {
+				System.out.println("Enter 8 to perform search in a city \nEnter 9 to perform search in a state ");
+				int k = Integer.parseInt(sc.nextLine());
+				if (k == 8) {
+					System.out.println("Enter the name of the city you want to search for");
+					String searchCity = sc.nextLine();
+					for (AddressBookMain a : addbook) {
+						if (a.city.equals(searchCity)) {
+							System.out.println("The details of the contact are as follows:");
+							System.out.println(a);
+						}
+					}
+				}
+				if (k == 9) {
+					System.out.println("Enter the name of the state you want to search for");
+					String searchState = sc.nextLine();
+					for (AddressBookMain a : addbook) {
+						if (a.state.equals(searchState)) {
+							System.out.println("The details of the contact are as follows:");
+							System.out.println(a);
+						}
+					}
+				}
+			} else {
+				break;
+			}
 
 			System.out.println("Thanks for visiting!!");
+			System.exit(0);
 		}
 	}
 }
