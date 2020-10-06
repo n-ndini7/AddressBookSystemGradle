@@ -2,7 +2,7 @@ package com.capgemini;
 
 import java.util.*;
 import java.util.regex.*;
-import java.util.Collections;
+import java.util.stream.Collectors;
 
 //UC11 - sort contacts aplhabetically according to first name in an Address Book using java streams
 public class AddressBookMain {
@@ -49,9 +49,8 @@ public class AddressBookMain {
 		}
 	}
 
-	private List<ContactInfo> sortAddressBookByName(List<ContactInfo> sortList) {
-		Collections.sort(sortList, new ContactInfo());
-		return sortList;
+	private List<ContactInfo> sortAddressBookByName() {
+		return addbook.stream().sorted((a, b) -> a.getCity().compareTo(b.getCity())).collect(Collectors.toList());
 	}
 
 	private long getCountByCityState(String cityOrState, int searchChoice) {
@@ -321,7 +320,8 @@ public class AddressBookMain {
 			System.out.println("Do you want to sort contacts in Address Book? (Y/N)");
 			String choice = sc.nextLine();
 			if (choice.equalsIgnoreCase("y")) {
-				List<ContactInfo> sortedEntriesList = ab.sortAddressBookByName(ab.addbook);
+				List<ContactInfo> sortedEntriesList = addbook.stream()
+						.sorted((a, b) -> a.getFname().compareTo(b.getFname())).collect(Collectors.toList());
 				System.out.println("Entries sorted in current address book!! Sorted Address Book Entries are:");
 				System.out.println(sortedEntriesList);
 			}

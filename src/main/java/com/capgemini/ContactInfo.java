@@ -1,8 +1,7 @@
 package com.capgemini;
 
-import java.util.Comparator;
 
-public class ContactInfo implements Comparator<ContactInfo> {
+public class ContactInfo {
 
 	// This class maintains contact information
 	String fname;
@@ -114,8 +113,5 @@ public class ContactInfo implements Comparator<ContactInfo> {
 			return false;
 	}
 
-	@Override
-	public int compare(ContactInfo o1, ContactInfo o2) {
-		return (o1.getFname() + o1.getLname()).compareTo(o2.getFname() + o2.getLname());
-	}
+	
 }
