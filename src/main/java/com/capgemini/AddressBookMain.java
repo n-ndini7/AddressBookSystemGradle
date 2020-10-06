@@ -6,7 +6,7 @@ import java.util.regex.*;
 import java.util.stream.Collectors;
 
 public class AddressBookMain extends ContactInfo {
-	// UC7 - duplicate entry not allowed
+	// UC9- view persons by city or state
 	private static Scanner sc;
 	// public static ArrayList<ContactInfo> Addbook = new ArrayList<ContactInfo>();
 	public static HashMap<String, ArrayList<AddressBookMain>> Directory = new HashMap<String, ArrayList<AddressBookMain>>();
@@ -32,18 +32,6 @@ public class AddressBookMain extends ContactInfo {
 		state = State;
 		zip = Zip;
 		phone = phoneNo;
-	}
-
-	public boolean duplicacyCheck(String name) {
-		boolean flag = true;
-		for (AddressBookMain c : addbook) {
-			if ((c.fname).equalsIgnoreCase(name)) {
-				flag = false;
-			} else {
-				flag = true;
-			}
-		}
-		return flag;
 	}
 
 	public String toString() {
@@ -256,13 +244,7 @@ public class AddressBookMain extends ContactInfo {
 							System.out.println();
 						}
 					}
-
 					AddressBookMain ab = new AddressBookMain(fname, lname, email, add, city, state, zip, phone);
-					/*
-					 * if (ab.duplicacyCheck(fname)) { addbook.add(ab); } else {
-					 * System.out.println("Contact already present. Duplication not allowed!!");
-					 * System.out.println("Entry rejected of this contact! "); }
-					 */
 					addbook.add(ab);
 					no--;
 				}
@@ -275,36 +257,77 @@ public class AddressBookMain extends ContactInfo {
 			 * ab.showContact(); }
 			 */
 			System.out.println("Do you want to perform search?(Y/N)");
-			String ino = sc.nextLine();
-			if (ino.equalsIgnoreCase("y")) {
-				System.out.println("Enter 8 to perform search in a city \nEnter 9 to perform search in a state ");
+			String in = sc.nextLine();
+			if (in.equalsIgnoreCase("y")) {
+				System.out.println("Enter 8 to perform search in a city \nEnter 9 to perform serach in a state ");
 				int k = Integer.parseInt(sc.nextLine());
 				if (k == 8) {
 					System.out.println("Enter the name of the city you want to search for");
 					String searchCity = sc.nextLine();
-					for (AddressBookMain a : addbook) {
-						if (a.city.equals(searchCity)) {
-							System.out.println("The details of the contact are as follows:");
-							System.out.println(a);
+					for (Map.Entry<String, ArrayList<AddressBookMain>> entry : Directory.entrySet()) {
+						for (AddressBookMain a : entry.getValue()) {
+							if (a.city.equals(searchCity)) {
+								System.out.println(a);
+							}
 						}
 					}
 				}
 				if (k == 9) {
 					System.out.println("Enter the name of the state you want to search for");
 					String searchState = sc.nextLine();
-					for (AddressBookMain a : addbook) {
-						if (a.state.equals(searchState)) {
-							System.out.println("The details of the contact are as follows:");
-							System.out.println(a);
+					for (Map.Entry<String, ArrayList<AddressBookMain>> entry : Directory.entrySet()) {
+						for (AddressBookMain a : entry.getValue()) {
+							if (a.state.equals(searchState)) {
+								System.out.println(a);
+							}
 						}
 					}
 				}
 			} else {
 				break;
 			}
-
-			System.out.println("Thanks for visiting!!");
-			System.exit(0);
+			HashMap<String, ArrayList<AddressBookMain>> cityContacts = new HashMap<>();
+			for (Map.Entry<String, ArrayList<AddressBookMain>> entry : Directory.entrySet()) {
+				for (AddressBookMain a : entry.getValue()) {
+					String cityName = a.city;
+					for (Map.Entry<String, ArrayList<AddressBookMain>> e : Directory.entrySet()) {
+						for (AddressBookMain add : e.getValue()) {
+							if (add.city.equalsIgnoreCase(cityName)) {
+								e.getValue().add(add);
+								cityContacts.put(cityName, e.getValue());
+							}
+						}
+					}
+				}
+			}
+			for (Map.Entry<String, ArrayList<AddressBookMain>> e : cityContacts.entrySet()) {
+				System.out.println("The contacts in city " + e.getKey() + " are:");
+				for (ContactInfo add : e.getValue()) {
+					System.out.println(add);
+				}
+			}
+			HashMap<String, ArrayList<AddressBookMain>> stateContacts = new HashMap<>();
+			for (Map.Entry<String, ArrayList<AddressBookMain>> entry : Directory.entrySet()) {
+				for (AddressBookMain a : entry.getValue()) {
+					String stateName = a.state;
+					for (Map.Entry<String, ArrayList<AddressBookMain>> e : Directory.entrySet()) {
+						for (AddressBookMain add : e.getValue()) {
+							if (add.city.equalsIgnoreCase(stateName)) {
+								e.getValue().add(add);
+								stateContacts.put(stateName, e.getValue());
+							}
+						}
+					}
+				}
+			}
+			for (Map.Entry<String, ArrayList<AddressBookMain>> e : stateContacts.entrySet()) {
+				System.out.println("The contacts in state " + e.getKey() + " are:");
+				for (AddressBookMain add : e.getValue()) {
+					System.out.println(add);
+				}
+			}
 		}
+
+		System.out.println("Thanks for visiting!!");
 	}
 }
