@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 //UC12 - sort contacts in an Address Book accordign to user choice using java streams
 public class AddressBookMain {
 	Scanner sc = new Scanner(System.in);
-	public static List<ContactInfo> addbook = new LinkedList<ContactInfo>();
+	public static List<ContactInfo> addbook;
 	public static HashMap<String, List<ContactInfo>> Directory = new HashMap<String, List<ContactInfo>>();
 
 	public void addContact(ContactInfo contactObj) {
@@ -17,6 +17,11 @@ public class AddressBookMain {
 			addbook.add(contactObj);
 		else
 			System.out.println("Contact already present. Duplication not allowed!");
+	}
+
+	public List<ContactInfo> newAddBook() {
+		addbook = new LinkedList<>();
+		return addbook;
 	}
 
 	public void addAddressBook(String listName, List<ContactInfo> ab) {
@@ -133,6 +138,17 @@ public class AddressBookMain {
 		return flag;
 	}
 
+	public void print() {
+		for (Map.Entry<String, List<ContactInfo>> entry : Directory.entrySet()) {
+			System.out.println("Address Book " + entry.getKey());
+			List<ContactInfo> list = entry.getValue();
+			for (ContactInfo c : list) {
+				System.out.println(c);
+			}
+			// list.stream().forEach(System.out::println);
+		}
+	}
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String fname = "";
@@ -169,6 +185,7 @@ public class AddressBookMain {
 						System.out.println("Address book name already exists !! Try another.");
 					}
 				}
+				List<ContactInfo> tempAddBook = ab.newAddBook();
 				System.out.println("Enter the number of contacts you want to enter into Address book:");
 				int no = Integer.parseInt(sc.nextLine());
 				while (no > 0) {
@@ -281,38 +298,9 @@ public class AddressBookMain {
 					ab.addContact(con);
 					no--;
 				}
-				ab.addAddressBook(addname, addbook);
+
+				ab.addAddressBook(addname, tempAddBook);
 			}
-			/*
-			 * System.out.println("Do you want to perform search operation? (Y/N)"); String
-			 * choice = sc.nextLine(); if (choice.equalsIgnoreCase("y")) {
-			 * System.out.println("Enter first name of person to search"); String
-			 * searchPerson = sc.nextLine();
-			 * System.out.println("Enter the name of city or state you want to search in:");
-			 * String cityOrState = sc.nextLine(); System.out.
-			 * println("Enter 8 if you entered name of a city \nEnter 9 if you entered name of a state"
-			 * ); int searchChoice = Integer.parseInt(sc.nextLine());
-			 * ab.searchPersonAcrossCityState(searchPerson, searchChoice, cityOrState); }
-			 */
-			/*
-			 * System.out.println("Do you want to view contacts by state or city? (Y/N)");
-			 * String choice = sc.nextLine(); if (choice.equalsIgnoreCase("y")) {
-			 * System.out.println("Enter the name of city or state"); String cityOrState =
-			 * sc.nextLine(); System.out.
-			 * println("Enter 8 if you entered name of a city \nEnter 9 if you entered name of a state"
-			 * ); int searchChoice = Integer.parseInt(sc.nextLine());
-			 * ab.viewPersonsByCityState(cityOrState, searchChoice); }
-			 */
-			/*
-			 * System.out.println("Do you want to count contacts by state or city? (Y/N)");
-			 * String choice = sc.nextLine(); if (choice.equalsIgnoreCase("y")) {
-			 * System.out.println("Enter the name of city or state: "); String cityOrState =
-			 * sc.nextLine(); System.out.
-			 * println("Enter 8 if you entered name of a city \nEnter 9 if you entered name of a state"
-			 * ); int searchChoice = Integer.parseInt(sc.nextLine()); System.out.println(
-			 * "Total persons in " + cityOrState + " = " +
-			 * ab.getCountByCityState(cityOrState, searchChoice)); }
-			 */
 			System.out.println("Do you want to sort contacts in Address Book? (Y/N)");
 			String choice = sc.nextLine();
 			if (choice.equalsIgnoreCase("y")) {
@@ -347,6 +335,23 @@ public class AddressBookMain {
 					System.out.println("Wrong choice entered!!");
 					break;
 				}
+			} else {
+				System.out.println("Do you want to display the Address Books and the Contacts added ?(Y/N)");
+				String dis = sc.nextLine();
+				if (dis.equalsIgnoreCase("y")) {
+					System.out.println();
+					ab.print();
+					System.out.println();
+				} else {
+					System.out.println("Thankyou for visiting!!");
+					System.exit(0);
+
+				}
+
+			}
+			System.out.println("Do you want to add more Address Books ?(Y/N)");
+			String wantToAdd = sc.nextLine();
+			if (wantToAdd.equalsIgnoreCase("n")) {
 				System.out.println("Thankyou for visiting!!");
 				System.exit(0);
 
