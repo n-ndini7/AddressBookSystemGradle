@@ -1,0 +1,11 @@
+Address Book College
+Name: Gargee Tripathi | Address: I wont tell | State: MP | City: Bhopal | ZIP: 462003 | Mobile no.: 91 9292929292 | Email ID: golcha@gmail.com
+
+Name: Priya Sahu | Address: She also wont tell | State: MP | City: Indore | ZIP: 462220 | Mobile no.: 91 9797979797 | Email ID: pri@gmail.com
+
+Address Book Home
+Name: RajNandini Gupta | Address: Not Required | State: UP | City: Banda | ZIP: 210001 | Mobile no.: 91 9876543210 | Email ID: rng@gmail.com
+
+Name: Ayushi Yadav | Address: Not Required | State: MP | City: Bhopal | ZIP: 462003 | Mobile no.: 91 9898989898 | Email ID: ayuu@gmail.com
+
+Name: Kajol Bairwa | Address: She wont tell | State: Rajasthan | City: Baran | ZIP: 120001 | Mobile no.: 91 9876543210 | Email ID: kajol@gmail.com

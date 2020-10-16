@@ -1,6 +1,5 @@
 package com.capgemini;
 
-
 public class ContactInfo {
 
 	// This class maintains contact information
@@ -101,8 +100,8 @@ public class ContactInfo {
 	}
 
 	public String toString() {
-		return fname + " " + lname + " : " + address + " : " + city + " : " + state + " : " + zip + " : " + phoneno
-				+ " : " + email + "\n";
+		return "First Name: " + fname + " , Last Name: " + lname + " , Address: " + address + " , State: " + state + " , City: " + city
+				+ " , ZIP: " + zip + " , Mobile no.: " + phoneno + " , Email ID: " + email + "\n";
 	}
 
 	public boolean equals(Object o) {
@@ -113,5 +112,4 @@ public class ContactInfo {
 			return false;
 	}
 
-	
 }
