@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.regex.*;
 import java.util.stream.Collectors;
 
-//UC12 - sort contacts in an Address Book accordign to user choice using java streams
+//UC13 - ability to read and write the address book with persons contact into a file using IO
 public class AddressBookMain {
 	Scanner sc = new Scanner(System.in);
 	public static List<ContactInfo> addbook;
