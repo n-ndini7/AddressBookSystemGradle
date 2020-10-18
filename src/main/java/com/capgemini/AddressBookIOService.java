@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.capgemini.ContactInfo;
-
 public class AddressBookIOService {
 
 	public static String CONTACT_TEXT_FILE_FOR_ADDRESS_BOOK = "ContactsInAddressBook.txt";
