@@ -1,5 +1,7 @@
 package com.capgemini;
 
+import com.opencsv.bean.CsvBindByName;
+
 public class ContactInfo {
 
 	// This class maintains contact information
@@ -100,8 +102,8 @@ public class ContactInfo {
 	}
 
 	public String toString() {
-		return "First Name: " + fname + " , Last Name: " + lname + " , Address: " + address + " , State: " + state + " , City: " + city
-				+ " , ZIP: " + zip + " , Mobile no.: " + phoneno + " , Email ID: " + email + "\n";
+		return "First Name: " + fname + " \nLast Name: " + lname + " \nAddress: " + address + " \nState: " + state
+				+ " \nCity: " + city + " \nZIP: " + zip + " \nMobile no.: " + phoneno + " \nEmail ID: " + email + "\n";
 	}
 
 	public boolean equals(Object o) {
