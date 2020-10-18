@@ -164,8 +164,6 @@ public class AddressBookMain {
 		System.out.println("Welcome to Address Book System!");
 		System.out.println("-------------------------------");
 		boolean p = true;
-		// boolean con = true;
-		// String choice = "";
 		while (p) {
 			System.out.println("Enter no. of address books you want to maintain: ");
 			int m = Integer.parseInt(sc.nextLine());
