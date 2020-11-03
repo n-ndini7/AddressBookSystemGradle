@@ -7,11 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.capgemini.ContactInfo;
 import com.capgemini.Service.DBService.AddressBookServiceDBException.ExceptionType;
 
-//UC20 - add contact in the address book and sync it with database
+//UC21 - add multiple contacts to the address book database
 public class AddressBookDBService {
 
 	public enum RetrievalType {
@@ -138,6 +141,30 @@ public class AddressBookDBService {
 			throw new AddressBookServiceDBException(ExceptionType.INSERT_FAILED, e.getMessage());
 		} catch (AddressBookServiceDBException e1) {
 			e1.printStackTrace();
+		}
+	}
+
+	public void addMultipleContactInTheDatabase(List<ContactInfo> contactList) throws AddressBookServiceDBException {
+		Map<Integer, Boolean> statusMap = new HashMap<Integer, Boolean>();
+		contactList.forEach(c1 -> {
+			statusMap.put(c1.hashCode(), false);
+			Runnable task = () -> {
+				try {
+					this.addContactsToAddressBook(c1);
+				} catch (AddressBookServiceDBException e) {
+					e.printStackTrace();
+				}
+				statusMap.put(c1.hashCode(), true);
+			};
+			Thread thread = new Thread(task, c1.getFname());
+			thread.start();
+		});
+		while (statusMap.containsValue(false)) {
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				throw new AddressBookServiceDBException(ExceptionType.INSERT_FAILED, e.getMessage());
+			}
 		}
 	}
 

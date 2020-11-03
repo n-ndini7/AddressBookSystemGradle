@@ -9,6 +9,7 @@ import com.capgemini.Service.DBService.AddressBookDBService.RetrievalType;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 public class AddressBookServiceDBTest {
@@ -17,7 +18,7 @@ public class AddressBookServiceDBTest {
 	@Test
 	public void givenAddressBookiInDB_ShouldReturnTheListOfRecordsStored() throws AddressBookServiceDBException {
 		List<ContactInfo> contactList = a1.readContactInfoFromDB();
-		Assert.assertEquals(10, contactList.size());
+		Assert.assertEquals(13, contactList.size());
 	}
 
 	@Test
@@ -38,7 +39,7 @@ public class AddressBookServiceDBTest {
 		int contacts;
 		try {
 			contacts = a1.getContactsWithinADateRange(startDate, endDate);
-			Assert.assertEquals(6, contacts);
+			Assert.assertEquals(9, contacts);
 		} catch (AddressBookServiceDBException e) {
 			e.printStackTrace();
 		}
@@ -78,5 +79,25 @@ public class AddressBookServiceDBTest {
 		} catch (AddressBookServiceDBException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Test
+	public void AddedMultipleContacts_threadsImplementation() {
+		Date d1 = Date.valueOf(LocalDate.now());
+		ContactInfo[] contacts = {
+				new ContactInfo("Ansh", "Sharma", "Address street 1", "Lucknow", "UP", "000111", "91 9090909090",
+						"anh@gmail.com", "Rahul", "Family", d1),
+				new ContactInfo("Ema", "Clark", "Address street 2 ", "Oslo", "Oslo", "888888", "91 9090909090",
+						"ema@gmail.com", "Billy", "Colleague", d1),
+				new ContactInfo("Ritesh", "Goyal", "Address street 3", "Bangalore", "Karnataka", "778877",
+						"91 9292929292", "rit@gmail.com", "Dorak", "Friend", d1) };
+		try {
+			a1.addMultipleContactInTheDatabase(Arrays.asList(contacts));
+			List<ContactInfo> contactList = a1.readContactInfoFromDB();
+			Assert.assertEquals(13, contactList.size());
+		} catch (AddressBookServiceDBException e) {
+			e.printStackTrace();
+		}
+
 	}
 }
