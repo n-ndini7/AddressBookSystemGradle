@@ -10,7 +10,7 @@ import java.util.List;
 import com.capgemini.ContactInfo;
 import com.capgemini.Service.DBService.AddressBookServiceDBException.ExceptionType;
 
-//UC1 - retreive data from the database
+//UC2 - update a person's contact and sync the changes with the database;
 public class AddressBookDBService {
 
 	private Connection getConnection() throws AddressBookServiceDBException {
@@ -61,6 +61,28 @@ public class AddressBookDBService {
 			throw new AddressBookServiceDBException(ExceptionType.UNABLE_TO_CONNECT, e.getMessage());
 		}
 		return list1;
+	}
+
+	public int updateContactInfoInAddressbook(String firstname, String lastname, String update)
+			throws AddressBookServiceDBException {
+		String sql = String.format("update address_book set phone= '%s' where first_name = '%s' and last_name='%s';",
+				update, firstname, lastname);
+		int res = 0;
+		try (Connection connection = this.getConnection()) {
+			Statement statement = connection.createStatement();
+			res = statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			throw new AddressBookServiceDBException(ExceptionType.UPDATE_FAILED, e.getMessage());
+		} catch (AddressBookServiceDBException e1) {
+			e1.printStackTrace();
+		}
+		return res;
+	}
+
+	public ContactInfo isAddressBookInSyncWithDB(String firstName) throws AddressBookServiceDBException {
+		List<ContactInfo> tempList = this.readContactInfoFromDB();
+		return tempList.stream().filter(contact -> contact.getFname().contentEquals(firstName)).findFirst()
+				.orElse(null);
 	}
 
 }
