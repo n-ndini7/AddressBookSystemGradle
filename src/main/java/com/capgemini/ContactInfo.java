@@ -13,6 +13,8 @@ public class ContactInfo {
 	String zip;
 	String phoneno;
 	String email;
+	String name;
+	String type;
 
 	public ContactInfo(String fname, String lname, String address, String city, String state, String zip,
 			String phoneno, String email) {
@@ -28,6 +30,20 @@ public class ContactInfo {
 
 	public ContactInfo() {
 
+	}
+
+	public ContactInfo(String fname, String lname, String address, String city, String state, String zip,
+			String phoneno, String email, String name, String type) {
+		this.fname = fname;
+		this.lname = lname;
+		this.address = address;
+		this.state = state;
+		this.city = city;
+		this.zip = zip;
+		this.phoneno = phoneno;
+		this.email = email;
+		this.name = name;
+		this.type = type;
 	}
 
 	public String getFname() {
@@ -103,7 +119,8 @@ public class ContactInfo {
 
 	public String toString() {
 		return "First Name: " + fname + " \nLast Name: " + lname + " \nAddress: " + address + " \nState: " + state
-				+ " \nCity: " + city + " \nZIP: " + zip + " \nMobile no.: " + phoneno + " \nEmail ID: " + email + "\n";
+				+ " \nCity: " + city + " \nZIP: " + zip + " \nMobile no.: " + phoneno + " \nEmail ID: " + email
+				+ "\nName of contact:" + name + "\n Type of contact:" + type + "\n";
 	}
 
 	public boolean equals(Object o) {
