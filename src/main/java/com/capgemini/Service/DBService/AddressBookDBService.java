@@ -1,6 +1,7 @@
 package com.capgemini.Service.DBService;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +11,7 @@ import java.util.List;
 import com.capgemini.ContactInfo;
 import com.capgemini.Service.DBService.AddressBookServiceDBException.ExceptionType;
 
-//UC2 - update a person's contact and sync the changes with the database;
+//UC18 - retreive contacts in the database within a date range
 public class AddressBookDBService {
 
 	private Connection getConnection() throws AddressBookServiceDBException {
@@ -77,6 +78,23 @@ public class AddressBookDBService {
 			e1.printStackTrace();
 		}
 		return res;
+	}
+
+	public int getContactsWithinADateRange(Date startDate, Date endDate) throws AddressBookServiceDBException {
+		String sql = String.format("SELECT * FROM address_book WHERE start BETWEEN '%s' AND '%s';", startDate, endDate);
+		int noOfContacts = 0;
+		try (Connection connection = getConnection()) {
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+				noOfContacts++;
+			}
+		} catch (SQLException e) {
+			throw new AddressBookServiceDBException(ExceptionType.RETREIVAL_FAILED, e.getMessage());
+		} catch (AddressBookServiceDBException e1) {
+			e1.printStackTrace();
+		}
+		return noOfContacts;
 	}
 
 	public ContactInfo isAddressBookInSyncWithDB(String firstName) throws AddressBookServiceDBException {
