@@ -4,7 +4,7 @@ package com.capgemini.Service.DBService;
 public class AddressBookServiceDBException extends Exception {
 
 	enum ExceptionType {
-		UNABLE_TO_CONNECT;
+		UNABLE_TO_CONNECT,UPDATE_FAILED;
 	}
 
 	ExceptionType type;
