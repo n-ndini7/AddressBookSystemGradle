@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import com.capgemini.Service.DBService.AddressBookDBService;
 import com.capgemini.Service.DBService.AddressBookServiceDBException;
+import com.capgemini.Service.DBService.AddressBookDBService.RetrievalType;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -38,6 +39,28 @@ public class AddressBookServiceDBTest {
 		try {
 			contacts = a1.getContactsWithinADateRange(startDate, endDate);
 			Assert.assertEquals(5, contacts);
+		} catch (AddressBookServiceDBException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void retrieveContactsInTheAddressBookDatabase_fromAcity() {
+		int result = 0;
+		try {
+			result = a1.getContactsWithinACityOrState("Mumbai", RetrievalType.CITY);
+			Assert.assertEquals(3, result);
+		} catch (AddressBookServiceDBException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void retrieveContactsInTheAddressBookDatabase_fromAstate() {
+		int result = 0;
+		try {
+			result = a1.getContactsWithinACityOrState("New York", RetrievalType.STATE);
+			Assert.assertEquals(3, result);
 		} catch (AddressBookServiceDBException e) {
 			e.printStackTrace();
 		}

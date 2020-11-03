@@ -11,8 +11,14 @@ import java.util.List;
 import com.capgemini.ContactInfo;
 import com.capgemini.Service.DBService.AddressBookServiceDBException.ExceptionType;
 
-//UC18 - retreive contacts in the database within a date range
+//UC19 - get contacts with in a city or state
 public class AddressBookDBService {
+
+	public enum RetrievalType {
+		CITY, STATE;
+	}
+
+	RetrievalType type;
 
 	private Connection getConnection() throws AddressBookServiceDBException {
 		String jdbcURL = "jdbc:mysql://localhost:3306/address_book_service?allowPublicKeyRetrieval=true&&useSSL=false";
@@ -95,6 +101,29 @@ public class AddressBookDBService {
 			e1.printStackTrace();
 		}
 		return noOfContacts;
+	}
+
+	public int getContactsWithinACityOrState(String key, RetrievalType type) throws AddressBookServiceDBException {
+		String type1 = type.toString();
+		int contacts = 0;
+		String sql = null;
+		if (type1.equalsIgnoreCase("city"))
+			sql = String.format("SELECT * FROM address_book WHERE city = '%s';", key);
+		else if (type1.equalsIgnoreCase("state"))
+			sql = String.format("SELECT * FROM address_book WHERE state = '%s';", key);
+		try (Connection connection = getConnection()) {
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+				contacts++;
+			}
+		} catch (SQLException e) {
+			throw new AddressBookServiceDBException(ExceptionType.RETREIVAL_FAILED, e.getMessage());
+		} catch (AddressBookServiceDBException e1) {
+			e1.printStackTrace();
+		}
+		return contacts;
+
 	}
 
 	public ContactInfo isAddressBookInSyncWithDB(String firstName) throws AddressBookServiceDBException {
