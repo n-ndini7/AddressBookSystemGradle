@@ -11,7 +11,7 @@ import java.util.List;
 import com.capgemini.ContactInfo;
 import com.capgemini.Service.DBService.AddressBookServiceDBException.ExceptionType;
 
-//UC19 - get contacts with in a city or state
+//UC20 - add contact in the address book and sync it with database
 public class AddressBookDBService {
 
 	public enum RetrievalType {
@@ -124,6 +124,21 @@ public class AddressBookDBService {
 		}
 		return contacts;
 
+	}
+
+	public void addContactsToAddressBook(ContactInfo c1) throws AddressBookServiceDBException {
+		String sql = String.format(
+				"INSERT INTO address_book(first_name,last_name,address,city,state,phone,email,name,type,zip_code,start) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+				c1.getFname(), c1.getLname(), c1.getAddress(), c1.getCity(), c1.getState(), c1.getPhoneno(),
+				c1.getEmail(), c1.getName(), c1.getType(), c1.getZip(), c1.getStart());
+		try (Connection connection = getConnection()) {
+			Statement statement = connection.createStatement();
+			int res = statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			throw new AddressBookServiceDBException(ExceptionType.INSERT_FAILED, e.getMessage());
+		} catch (AddressBookServiceDBException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	public ContactInfo isAddressBookInSyncWithDB(String firstName) throws AddressBookServiceDBException {
