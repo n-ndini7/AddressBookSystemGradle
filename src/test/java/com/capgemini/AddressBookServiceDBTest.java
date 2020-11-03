@@ -17,7 +17,7 @@ public class AddressBookServiceDBTest {
 	@Test
 	public void givenAddressBookiInDB_ShouldReturnTheListOfRecordsStored() throws AddressBookServiceDBException {
 		List<ContactInfo> contactList = a1.readContactInfoFromDB();
-		Assert.assertEquals(9, contactList.size());
+		Assert.assertEquals(10, contactList.size());
 	}
 
 	@Test
@@ -38,7 +38,7 @@ public class AddressBookServiceDBTest {
 		int contacts;
 		try {
 			contacts = a1.getContactsWithinADateRange(startDate, endDate);
-			Assert.assertEquals(5, contacts);
+			Assert.assertEquals(6, contacts);
 		} catch (AddressBookServiceDBException e) {
 			e.printStackTrace();
 		}
@@ -54,13 +54,27 @@ public class AddressBookServiceDBTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void retrieveContactsInTheAddressBookDatabase_fromAstate() {
 		int result = 0;
 		try {
 			result = a1.getContactsWithinACityOrState("New York", RetrievalType.STATE);
 			Assert.assertEquals(3, result);
+		} catch (AddressBookServiceDBException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void addContactToTheAddress_BookAndSyncItWithDB() {
+		Date d1 = Date.valueOf("2020-05-05");
+		ContactInfo c1 = new ContactInfo("Mark", "Winston", "Civil Street 101", "Bhopal", "Madhya Pradesh", "909090",
+				"91 9797979797", "mark@gmail.com", "Rohit", "Friend", d1);
+		try {
+			a1.addContactsToAddressBook(c1);
+			List<ContactInfo> contactList = a1.readContactInfoFromDB();
+			Assert.assertEquals(10, contactList.size());
 		} catch (AddressBookServiceDBException e) {
 			e.printStackTrace();
 		}
