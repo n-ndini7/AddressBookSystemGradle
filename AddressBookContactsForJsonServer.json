@@ -1,0 +1,31 @@
+{
+"Contacts":
+[
+  {
+    "First Name": "RajNandini",
+    "Last Name": "Gupta",
+    "Address": "Street1",
+    "State": "StateA",
+    "City": "CityA",
+    "ZIP": "000000",
+    "Mobile no.": "91 9876543210",
+    "Email ID": "rng@gmail.com",
+    "Name of contact": "Kajol Bairwa",
+    "Type of contact": "Friend",
+    "Start Date": "Nov 4, 2020"
+  },
+  {
+    "First Name": "Ayushi",
+    "Last Name": "Yadav",
+    "Address": "Street2",
+    "State": "StateB",
+    "City": "CityB",
+    "ZIP": "111111",
+    "Mobile no.": "91 9876543210",
+    "Email ID": "ayy@gmail.com",
+    "Name of contact": "Gargee Tripathi",
+    "Type of contact": "Family",
+    "Start Date": "Aug 4, 2020"
+  }
+]
+}
