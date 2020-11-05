@@ -15,6 +15,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+//This test class performs the Rest API service tests for Address bppk
 public class AddressBookSeviceRestAPITest {
 	@Before
 	public void Setup() {
