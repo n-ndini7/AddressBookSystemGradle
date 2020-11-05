@@ -177,10 +177,9 @@ public class ContactInfo {
 	}
 
 	public String toString() {
-		return "Contact ID:" + id + "\nFirst Name: " + fname + " \nLast Name: " + lname + " \nAddress: " + address
-				+ " \nState: " + state + " \nCity: " + city + " \nZIP: " + zip + " \nMobile no.: " + phoneno
-				+ " \nEmail ID: " + email + "\nName of contact:" + name + "\n Type of contact:" + type + "\nStart Date:"
-				+ start + "\n";
+		return "First Name: " + fname + " \nLast Name: " + lname + " \nAddress: " + address + " \nState: " + state
+				+ " \nCity: " + city + " \nZIP: " + zip + " \nMobile no.: " + phoneno + " \nEmail ID: " + email
+				+ "\nName of contact:" + name + "\n Type of contact:" + type + "\nStart Date:" + start + "\n";
 	}
 
 	public boolean equals(Object o) {

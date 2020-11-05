@@ -43,14 +43,12 @@ public class AddressBookSeviceRestAPITest {
 		AddressBookRestAPIService service;
 		List<ContactInfo> contactList = Arrays.asList(contacts);
 		service = new AddressBookRestAPIService(contactList);
-		service = new AddressBookRestAPIService(contactList);
 		Date d1 = Date.valueOf("2020-05-05");
 		ContactInfo contact = new ContactInfo("3", "Mark", "Winston", "Civil Street 101", "Bhopal", "Madhya Pradesh",
 				"909090", "91 9797979797", "mark@gmail.com", "Rohit", "Friend", d1);
 		Response response = addContactToJsonServer(contact);
 		int statusCode = response.getStatusCode();
 		Assert.assertEquals(201, statusCode);
-		contact = new Gson().fromJson(response.asString(), ContactInfo.class);
 		service.addContactToJsonServer(contact);
 		long entries = service.countEntries();
 		Assert.assertEquals(3, entries);
