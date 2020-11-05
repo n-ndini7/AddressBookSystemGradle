@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.capgemini.Service.AddressBookRestAPIService;
+import com.capgemini.Service.AddressBookRestAPIService.UpdateType;
 import com.google.gson.Gson;
 
 import io.restassured.RestAssured;
@@ -80,6 +81,24 @@ public class AddressBookSeviceRestAPITest {
 		}
 		long entries = service.countEntries();
 		Assert.assertEquals(6, entries);
+	}
+
+	@Test
+	public void givenSalaryShouldUpdateContactInAdddressBook_ShouldMatchWith201StatusCodeAndCount() {
+		ContactInfo[] contacts = getContactsList();
+		AddressBookRestAPIService service;
+		List<ContactInfo> contactList = Arrays.asList(contacts);
+		service = new AddressBookRestAPIService(contactList);
+		String update = "2019-09-11";
+		service.updateContactInfoinJson("4", "Mithilda", "Warner", update, UpdateType.START_DATE);
+		ContactInfo contact = service.getContactInfoFromAddBook("4", "Mithilda", "Warner");
+		String updatedContact = new Gson().toJson(contact);
+		RequestSpecification request = RestAssured.given();
+		request.header("Content-Type", "application/json");
+		request.body(updatedContact);
+		Response response = request.put("/Contacts/" + contact.getId());
+		int statusCode = response.getStatusCode();
+		Assert.assertEquals(200, statusCode);
 	}
 
 	private Response addContactToJsonServer(ContactInfo contact) {
