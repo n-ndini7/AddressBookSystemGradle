@@ -2,6 +2,7 @@ package com.capgemini;
 
 import java.sql.Date;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -32,7 +33,6 @@ public class AddressBookSeviceRestAPITest {
 
 	private ContactInfo[] getContactsList() {
 		Response response = RestAssured.get("/Contacts");
-		System.out.println("CONTACTS ENTRIES IN JSONServer:\n" + response.asString());
 		ContactInfo[] contacts = new Gson().fromJson(response.asString(), ContactInfo[].class);
 		return contacts;
 	}
@@ -41,20 +41,20 @@ public class AddressBookSeviceRestAPITest {
 	public void givenNewContact_WhenAddedToJSONServer_ShouldMatchWith201StatusCodeAndCount() {
 		ContactInfo[] contacts = getContactsList();
 		AddressBookRestAPIService service;
-		service = new AddressBookRestAPIService(Arrays.asList(contacts));
+		List<ContactInfo> contactList = Arrays.asList(contacts);
+		service = new AddressBookRestAPIService(contactList);
 		Date d1 = Date.valueOf("2020-05-05");
-		ContactInfo contact = new ContactInfo("Mark", "Winston", "Civil Street 101", "Bhopal", "Madhya Pradesh",
+		ContactInfo contact = new ContactInfo("3", "Mark", "Winston", "Civil Street 101", "Bhopal", "Madhya Pradesh",
 				"909090", "91 9797979797", "mark@gmail.com", "Rohit", "Friend", d1);
-		Response response = addPersonToJsonServer(contact);
+		Response response = addContactToJsonServer(contact);
 		int statusCode = response.getStatusCode();
 		Assert.assertEquals(201, statusCode);
-		contact = new Gson().fromJson(response.asString(), ContactInfo.class);
 		service.addContactToJsonServer(contact);
 		long entries = service.countEntries();
 		Assert.assertEquals(3, entries);
 	}
 
-	private Response addPersonToJsonServer(ContactInfo contact) {
+	private Response addContactToJsonServer(ContactInfo contact) {
 		String empJson = new Gson().toJson(contact);
 		RequestSpecification request = RestAssured.given();
 		request.header("Content-Type", "application/json");
