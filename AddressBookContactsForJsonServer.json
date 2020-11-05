@@ -1,32 +1,32 @@
 {
   "Contacts": [
     {
-      "Contact ID": "1",
-      "First Name": "RajNandini",
-      "Last Name": "Gupta",
-      "Address": "Street1",
-      "State": "StateA",
-      "City": "CityA",
-      "ZIP": "000000",
-      "Mobile no.": "91 9876543210",
-      "Email ID": "rng@gmail.com",
-      "Name of contact": "Kajol Bairwa",
-      "Type of contact": "Friend",
-      "Start Date": "Nov 4, 2020"
+      "id": "1",
+      "fname": "RajNandini ",
+      "lname": "Gupta",
+      "address": "Civil Street 909",
+      "city": "Bhopal",
+      "state": "Madhya Pradesh",
+      "zip": "909090",
+      "phoneno": "91 9797979797",
+      "email": "rng@gmail.com",
+      "name": "Kajol Bairwa",
+      "type": "Friend",
+      "start": "Nov 4, 2020"
     },
     {
-      "Contact ID": "2",
-      "First Name": "Ayushi",
-      "Last Name": "Yadav",
-      "Address": "Street2",
-      "State": "StateB",
-      "City": "CityB",
-      "ZIP": "111111",
-      "Mobile no.": "91 9876543210",
-      "Email ID": "ayy@gmail.com",
-      "Name of contact": "Gargee Tripathi",
-      "Type of contact": "Family",
-      "Start Date": "Aug 4, 2020"
+      "id": "2",
+      "fname": "Ayushi ",
+      "lname": "Yadav",
+      "address": "Civil Street 111",
+      "city": "Vadodara",
+      "state": "Gujarat",
+      "zip": "909111",
+      "phoneno": "91 9797219797",
+      "email": "ayu@gmail.com",
+      "name": "Ritika",
+      "type": "Family",
+      "start": "Aug 5, 2020"
     },
     {
       "id": "3",
@@ -41,6 +41,48 @@
       "name": "Rohit",
       "type": "Friend",
       "start": "May 5, 2020"
+    },
+    {
+      "id": "4",
+      "fname": "Mithilda",
+      "lname": "Warner",
+      "address": "Civil Street 404",
+      "city": "Mumbai",
+      "state": "Maharshtra",
+      "zip": "902290",
+      "phoneno": "91 9797229797",
+      "email": "mith@gmail.com",
+      "name": "Robert",
+      "type": "Friend",
+      "start": "May 5, 2020"
+    },
+    {
+      "id": "5",
+      "fname": "Emily",
+      "lname": "Watson",
+      "address": "Civil Street 202",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "zip": "909098",
+      "phoneno": "91 9797974597",
+      "email": "emi@gmail.com",
+      "name": "Ritu",
+      "type": "Colleague",
+      "start": "Apr 4, 2020"
+    },
+    {
+      "id": "6",
+      "fname": "Poulami",
+      "lname": "Dey",
+      "address": "Civil Street 303",
+      "city": "Amsterdam",
+      "state": "New York",
+      "zip": "119090",
+      "phoneno": "91 9797232797",
+      "email": "pol@gmail.com",
+      "name": "Clinton",
+      "type": "Family",
+      "start": "Jun 6, 2020"
     }
   ]
 }

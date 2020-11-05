@@ -6,10 +6,10 @@ import com.capgemini.ContactInfo;
 
 public class AddressBookRestAPIService {
 
-	public List<ContactInfo> contactList = new ArrayList<ContactInfo>();
+	public List<ContactInfo> contactList;
 
 	public AddressBookRestAPIService(List<ContactInfo> contacts) {
-		contactList = contacts;
+		contactList = new ArrayList<ContactInfo>(contacts);
 	}
 
 	public long countEntries() {
@@ -18,6 +18,5 @@ public class AddressBookRestAPIService {
 
 	public void addContactToJsonServer(ContactInfo contact1) {
 		contactList.add(contact1);
-		System.out.println(contactList);
 	}
 }
