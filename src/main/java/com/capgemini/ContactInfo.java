@@ -7,6 +7,7 @@ import com.opencsv.bean.CsvBindByName;
 public class ContactInfo {
 
 	// This class maintains contact information
+	String id;
 	String fname;
 	String lname;
 	String address;
@@ -47,6 +48,22 @@ public class ContactInfo {
 		this.email = email;
 		this.name = name;
 		this.type = type;
+	}
+
+	public ContactInfo(String id, String fname, String lname, String address, String city, String state, String zip,
+			String phoneno, String email, String name, String type, Date start) {
+		this.fname = fname;
+		this.lname = lname;
+		this.address = address;
+		this.state = state;
+		this.city = city;
+		this.zip = zip;
+		this.phoneno = phoneno;
+		this.email = email;
+		this.name = name;
+		this.type = type;
+		this.start = start;
+		this.id = id;
 	}
 
 	public ContactInfo(String fname, String lname, String address, String city, String state, String zip,
@@ -160,9 +177,10 @@ public class ContactInfo {
 	}
 
 	public String toString() {
-		return "First Name: " + fname + " \nLast Name: " + lname + " \nAddress: " + address + " \nState: " + state
-				+ " \nCity: " + city + " \nZIP: " + zip + " \nMobile no.: " + phoneno + " \nEmail ID: " + email
-				+ "\nName of contact:" + name + "\n Type of contact:" + type + "\nStart Date:" + start + "\n";
+		return "Contact ID:" + id + "\nFirst Name: " + fname + " \nLast Name: " + lname + " \nAddress: " + address
+				+ " \nState: " + state + " \nCity: " + city + " \nZIP: " + zip + " \nMobile no.: " + phoneno
+				+ " \nEmail ID: " + email + "\nName of contact:" + name + "\n Type of contact:" + type + "\nStart Date:"
+				+ start + "\n";
 	}
 
 	public boolean equals(Object o) {
