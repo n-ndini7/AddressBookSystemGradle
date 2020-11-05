@@ -29,20 +29,6 @@
       "start": "Aug 5, 2020"
     },
     {
-      "id": "3",
-      "fname": "Mark",
-      "lname": "Winston",
-      "address": "Civil Street 101",
-      "city": "Bhopal",
-      "state": "Madhya Pradesh",
-      "zip": "909090",
-      "phoneno": "91 9797979797",
-      "email": "mark@gmail.com",
-      "name": "Rohit",
-      "type": "Friend",
-      "start": "May 5, 2020"
-    },
-    {
       "id": "4",
       "fname": "Mithilda",
       "lname": "Warner",
@@ -83,6 +69,20 @@
       "name": "Clinton",
       "type": "Family",
       "start": "Jun 6, 2020"
+    },
+    {
+      "id": "3",
+      "fname": "Mark",
+      "lname": "Winston",
+      "address": "Civil Street 101",
+      "city": "Bhopal",
+      "state": "Madhya Pradesh",
+      "zip": "909090",
+      "phoneno": "91 9797979797",
+      "email": "mark@gmail.com",
+      "name": "Rohit",
+      "type": "Friend",
+      "start": "May 5, 2020"
     }
   ]
 }

@@ -86,4 +86,9 @@ public class AddressBookRestAPIService {
 		}
 		return null;
 	}
+
+	public void deleteContact(String id, String fname, String lname) {
+		ContactInfo contact = getContactInfoFromAddBook(id, fname, lname);
+		contactList.remove(contact);
+	}
 }

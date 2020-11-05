@@ -101,6 +101,21 @@ public class AddressBookSeviceRestAPITest {
 		Assert.assertEquals(200, statusCode);
 	}
 
+	@Test
+	public void givenContactNameAndId_shouldDeleteContactInfoFromJsonServer_ShouldMatchWithstatusCodeAndCount() {
+		ContactInfo[] contacts = getContactsList();
+		AddressBookRestAPIService service;
+		List<ContactInfo> contactList = Arrays.asList(contacts);
+		service = new AddressBookRestAPIService(contactList);
+		ContactInfo contact = service.getContactInfoFromAddBook("3", "Mark", "Winston");
+		RequestSpecification request = RestAssured.given();
+		request.header("Content-Type", "application/json");
+		Response response = request.delete("/Contacts/" + contact.getId());
+		service.deleteContact("3", "Mark", "Winston");
+		int statusCode = response.getStatusCode();
+		Assert.assertEquals(200, statusCode);
+	}
+
 	private Response addContactToJsonServer(ContactInfo contact) {
 		String empJson = new Gson().toJson(contact);
 		RequestSpecification request = RestAssured.given();
