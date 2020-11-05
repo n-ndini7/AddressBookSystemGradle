@@ -41,6 +41,48 @@
       "name": "Rohit",
       "type": "Friend",
       "start": "May 5, 2020"
+    },
+    {
+      "id": "4",
+      "fname": "Mithilda",
+      "lname": "Warner",
+      "address": "Civil Street 404",
+      "city": "Mumbai",
+      "state": "Maharshtra",
+      "zip": "902290",
+      "phoneno": "91 9797229797",
+      "email": "mith@gmail.com",
+      "name": "Robert",
+      "type": "Friend",
+      "start": "May 5, 2020"
+    },
+    {
+      "id": "5",
+      "fname": "Emily",
+      "lname": "Watson",
+      "address": "Civil Street 202",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "zip": "909098",
+      "phoneno": "91 9797974597",
+      "email": "emi@gmail.com",
+      "name": "Ritu",
+      "type": "Colleague",
+      "start": "Apr 4, 2020"
+    },
+    {
+      "id": "6",
+      "fname": "Poulami",
+      "lname": "Dey",
+      "address": "Civil Street 303",
+      "city": "Amsterdam",
+      "state": "New York",
+      "zip": "119090",
+      "phoneno": "91 9797232797",
+      "email": "pol@gmail.com",
+      "name": "Clinton",
+      "type": "Family",
+      "start": "Jun 6, 2020"
     }
   ]
 }

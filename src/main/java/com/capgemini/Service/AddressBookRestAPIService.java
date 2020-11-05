@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.capgemini.ContactInfo;
 
+//This class performs the Rest API service 
 public class AddressBookRestAPIService {
 
 	public static List<ContactInfo> contactList;

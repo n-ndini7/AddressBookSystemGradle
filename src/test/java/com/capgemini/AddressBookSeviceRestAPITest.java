@@ -15,6 +15,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+//This test class performs the Rest API service tests for Address bppk
 public class AddressBookSeviceRestAPITest {
 	@Before
 	public void Setup() {
@@ -52,6 +53,33 @@ public class AddressBookSeviceRestAPITest {
 		service.addContactToJsonServer(contact);
 		long entries = service.countEntries();
 		Assert.assertEquals(3, entries);
+	}
+
+	@Test
+	public void givenMultipleContacts_WhenAddedToJSONServer_ShouldMatchWith201StatusCodeAndCount() {
+		ContactInfo[] contacts = getContactsList();
+		AddressBookRestAPIService service;
+		List<ContactInfo> contactList = Arrays.asList(contacts);
+		service = new AddressBookRestAPIService(contactList);
+		Date d1 = Date.valueOf("2020-05-05");
+		Date d2 = Date.valueOf("2020-04-04");
+		Date d3 = Date.valueOf("2020-06-06");
+		ContactInfo[] contactsArray = {
+				new ContactInfo("4", "Mithilda", "Warner", "Civil Street 404", "Mumbai", "Maharshtra", "902290",
+						"91 9797229797", "mith@gmail.com", "Robert", "Friend", d1),
+				new ContactInfo("5", "Emily", "Watson", "Civil Street 202", "Mumbai", "Maharashtra", "909098",
+						"91 9797974597", "emi@gmail.com", "Ritu", "Colleague", d2),
+				new ContactInfo("6", "Poulami", "Dey", "Civil Street 303", "Amsterdam", "New York", "119090",
+						"91 9797232797", "pol@gmail.com", "Clinton", "Family", d3), };
+		for (ContactInfo contact1 : contactsArray) {
+			Response response = addContactToJsonServer(contact1);
+			int statusCode = response.getStatusCode();
+			Assert.assertEquals(201, statusCode);
+			contact1 = new Gson().fromJson(response.asString(), ContactInfo.class);
+			service.addContactToJsonServer(contact1);
+		}
+		long entries = service.countEntries();
+		Assert.assertEquals(6, entries);
 	}
 
 	private Response addContactToJsonServer(ContactInfo contact) {
